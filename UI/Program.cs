@@ -1,5 +1,7 @@
 ﻿using System;
 using Models;
+using StoreBL;
+using DL;
 
 namespace UI
 {
@@ -9,15 +11,7 @@ namespace UI
         {
             Console.WriteLine("Welcome to my store!");
 
-            StoreFront myStore = new StoreFront() 
-            {
-                Name = "My Store",
-                Address = "123 West East Street, Los Angeles CA"
-            };
-
-            Console.WriteLine(myStore.ToString());
-            myStore.Name = Console.ReadLine();
-            Console.WriteLine(myStore.ToString());
+            new MainMenu(new BL(new ExampleRepo())).Start();
         }
     }
 }
