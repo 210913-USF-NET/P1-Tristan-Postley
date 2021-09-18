@@ -1,10 +1,17 @@
 using System;
 using Models;
+using StoreBL;
 
 namespace UI
 {
     public class NameMenu : IMenu
     {
+        private IBL _bl;
+        
+        public NameMenu(IBL bl)
+        {
+            _bl = bl;
+        }
         //TODO
         //How to pass parameters?
         // public void Start(string location)
@@ -12,9 +19,9 @@ namespace UI
         {
             string input = "";
 
-            Console.WriteLine($"Welcome to the {location} Krusty Krab. Gimme your name?");
+            // Console.WriteLine($"Welcome to the {location} Krusty Krab. Gimme your name?");
 
-            input = Console.ReadLine();
+            // input = Console.ReadLine();
 
             //TODO
             //Search DB for input
@@ -29,6 +36,12 @@ namespace UI
             // Customer cust = new Customer(string input, string password)
 
             // MenuFactory.GetMenu("order").Start(cust);
+
+        }
+
+        public void Greet(string location)
+        {
+            Console.WriteLine($"Welcome to the {location} Krusty Krab. Gimme your name?");
 
         }
     }

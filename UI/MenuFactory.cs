@@ -13,11 +13,11 @@ namespace UI
                 case "main": 
                     return new MainMenu();
                 case "location":
-                    return new LocationMenu();
+                    return new LocationMenu(new BL(new ExampleRepo()));
                 case "name":
-                    return new NameMenu();
+                    return new NameMenu(new BL(new ExampleRepo()));
                 case "order":
-                    return new OrderMenu();
+                    return new OrderMenu(new BL(new ExampleRepo()));
                 default:
                     return null;
             }

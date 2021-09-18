@@ -1,15 +1,23 @@
 using System;
 using Models;
+using StoreBL;
 
 namespace UI
 {
     public class OrderMenu : IMenu
     {
+        private IBL _bl;
+        
+        public OrderMenu(IBL bl)
+        {
+            _bl = bl;
+        }
         public void Start()
         {
             bool exit = false;
             string input = "";
             int quantity = 0;
+            string selectedLocation;
             do
             {
                 Console.WriteLine("Let me guess, you want a Krabby Patty?");
@@ -22,7 +30,7 @@ namespace UI
 
                 Console.WriteLine("How many?");
 
-                quantity = Console.ReadLine();
+                quantity = int.Parse(Console.ReadLine());
 
                 if(quantity < 1) Console.WriteLine("Then why are you here?");
 
@@ -46,7 +54,6 @@ namespace UI
                         break;
                 }
 
-                MenuFactory.GetMenu("name").Start(selectedLocation);
 
             } while (!exit);
         }

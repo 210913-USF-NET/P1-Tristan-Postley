@@ -1,10 +1,17 @@
 using System;
 using Models;
-
+using StoreBL;
+using System.Collections.Generic;
 namespace UI
 {
     public class LocationMenu : IMenu
     {
+        private IBL _bl;
+
+        public LocationMenu(IBL bl)
+        {
+            _bl = bl;
+        }
         public void Start()
         {
             bool exit = false;
@@ -13,24 +20,30 @@ namespace UI
             do
             {
                 Console.WriteLine("You are hungry for a Krabby Patty. Where would you like to go?");
-                Console.WriteLine("[0] Bikini Bottom");
-                Console.WriteLine("[1] Tentacle Acres");
-                Console.WriteLine("[2] New Kelp City");
+                
+                List<StoreFront> allStores = _bl.GetAllStoreFronts();
+                if(allStores == null || allStores.Count == 0)
+                {
+                    Console.WriteLine("No Stores");
+                    return;
+                }
+                for(int i = 0; i < allStores.Count; i++)
+                {
+                    Console.WriteLine($"[{i}] {allStores[i].Location}");
+                }
+                
                 Console.WriteLine("[x] Exit");
 
                 input = Console.ReadLine();
 
                 switch (input)
                 {
+                    //Hardcoded, will only work for three options
                     case "0":
-                        selectedLocation = "Bikini Bottom";
-                        //Select from Stores where location = selectedLocation
-                        break;
                     case "1":
-                        selectedLocation = "Tentacle Acres";
-                        break;
                     case "2":  
-                        selectedLocation = "New Kelp City";
+                        selectedLocation = allStores[int.Parse(input)].Location;
+                        // Console.WriteLine(allStores[int.Parse(input)].Location);
                         break;
                     case "x":
                         Console.WriteLine("Be that way.");
@@ -41,7 +54,7 @@ namespace UI
                         break;
                 }
 
-                MenuFactory.GetMenu("name").Start(selectedLocation);
+                // MenuFactory.GetMenu("name").Greet(selectedLocation);
 
             } while (!exit);
         }
