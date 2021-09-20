@@ -2,6 +2,7 @@
 using Serilog;
 using StoreBL;
 using DL;
+using Models;
 
 namespace UI
 {
@@ -22,7 +23,7 @@ namespace UI
         
             Log.Information("App starting...");
 
-            new MainMenu().Start();
+            new MainMenu().Start(new Order());
 
             Log.Information("App closing...");
 

@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Models;
 using StoreBL;
+using DL;
+using Serilog;
 
 namespace UI
 {
@@ -12,37 +15,60 @@ namespace UI
         {
             _bl = bl;
         }
-        //TODO
-        //How to pass parameters?
-        // public void Start(string location)
-        public void Start()
+        public void Start(Order order)
         {
-            string input = "";
+            Log.Information("Order Location: " + order.Product.Location);
 
-            // Console.WriteLine($"Welcome to the {location} Krusty Krab. Gimme your name?");
+            begin:
+            string name = "";
+            bool match = false;
+            List<Customer> matchedCustomers = new List<Customer>();
 
-            // input = Console.ReadLine();
-
+            
+            Console.WriteLine($"Welcome to the {order.Product.Location} Krusty Krab. Gimme your name?");
+            
+            name = Console.ReadLine();
             //TODO
             //Search DB for input
-            //if(match) 
-            // cust = customer object
-            // Console.WriteLine("And your password?");
-            // password = Console.ReadLine();
+            List<Customer> allCustomers = _bl.GetAllCustomers();
+            foreach(Customer cust in allCustomers)
+            {
+                if(cust.Name.ToLower() == name.ToLower())
+                {
+                    Log.Information("Found Customer: " + cust.Name);
+                    match = true;
+                    matchedCustomers.Add(cust);
+                }
+            }
+            if(match)
+            {
+                Console.WriteLine("And your password?");
+                string password = Console.ReadLine();
 
-            //else 
-            // Console.WriteLine("Think of a password, so nobody impersonates you.");
-            // password = Console.ReadLine();
-            // Customer cust = new Customer(string input, string password)
+                foreach(Customer cust in matchedCustomers)
+                {
+                    if(cust.Password == password)
+                    {
+                        Log.Information("Found Customer: " + cust.Name);
+                        order.Customer = cust;
+                        MenuFactory.GetMenu("order").Start(order);
+                    }
+                    else
+                    {
+                        Console.WriteLine("That was the wrong password, so who are you really?");
+                        goto begin;
+                    }
+                }
 
-            // MenuFactory.GetMenu("order").Start(cust);
-
-        }
-
-        public void Greet(string location)
-        {
-            Console.WriteLine($"Welcome to the {location} Krusty Krab. Gimme your name?");
-
+            }
+            else 
+            {
+                Console.WriteLine("Think of a password, so nobody impersonates you.");
+                string password = Console.ReadLine();
+                order.Customer = new Customer(name, password);
+                Log.Information("Created new Customer: " + order.Customer.Name + " " + order.Customer.Password);
+                MenuFactory.GetMenu("order").Start(order);
+            }
         }
     }
 }

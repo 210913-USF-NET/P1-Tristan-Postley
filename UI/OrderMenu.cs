@@ -1,6 +1,7 @@
 using System;
 using Models;
 using StoreBL;
+using Serilog;
 
 namespace UI
 {
@@ -12,12 +13,15 @@ namespace UI
         {
             _bl = bl;
         }
-        public void Start()
+        public void Start(Order order)
         {
+            Log.Information("Taking Order for " + order.Customer.Name);
+
             bool exit = false;
             string input = "";
             int quantity = 0;
-            string selectedLocation;
+            string selectedLocation = "";
+            order.Product = new Product();
             do
             {
                 Console.WriteLine("Let me guess, you want a Krabby Patty?");

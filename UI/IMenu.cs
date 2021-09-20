@@ -1,7 +1,9 @@
+using Models;
+
 namespace UI
 {
     public interface IMenu
     {
-        void Start();
+        void Start(Order order);
     }
 }
