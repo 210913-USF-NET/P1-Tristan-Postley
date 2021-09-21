@@ -12,14 +12,14 @@ namespace Models
             this.Name = name;
         }
 
-        public Customer(string name, int age) : this(name) 
+        public Customer(string name, string password)
         {
-            this.Age = age;
+            this.Name = name;
+            this.Password = password;
         }
 
         public string Name {get; set;}
-        public int Age {get; set;}
-        public string City {get; set;}
+        public string Password {get; set;}
 
         public List<Order> Orders {get; set;}
 

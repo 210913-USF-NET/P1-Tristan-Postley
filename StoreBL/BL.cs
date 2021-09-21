@@ -14,9 +14,14 @@ namespace StoreBL
             _repo = repo;
         }
 
-        public List<StoreFront> GetAllStoreFronts()
+        public List<Store> GetAllStores()
         {
-            return _repo.GetAllStoreFronts();
+            return _repo.GetAllStores();
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            return _repo.GetAllCustomers();
         }
     }
 }

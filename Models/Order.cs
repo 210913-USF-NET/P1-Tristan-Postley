@@ -4,9 +4,10 @@ namespace Models
 {
     public class Order
     {
-        public int Id {get;}
-        public List<LineItem> LineItems {get; set;}
+        public Customer Customer {get; set;}
+        public int Quantity {get; set;}
+        public Product Product {get; set;}
 
-        public decimal Total {get; set;}
+        public Store Store {get; set;}
     }
 }

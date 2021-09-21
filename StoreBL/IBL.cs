@@ -5,6 +5,8 @@ namespace StoreBL
 {
     public interface IBL
     {
-        List<StoreFront> GetAllStoreFronts();
+        List<Store> GetAllStores();
+
+        List<Customer> GetAllCustomers();
     }
 }
