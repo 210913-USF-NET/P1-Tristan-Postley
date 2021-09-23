@@ -9,14 +9,14 @@ namespace DL.Entities
     {
         public Store()
         {
+            Inventories = new HashSet<Inventory>();
             Orders = new HashSet<Order>();
         }
 
         public int Id { get; set; }
         public string Location { get; set; }
-        public int ProductId { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

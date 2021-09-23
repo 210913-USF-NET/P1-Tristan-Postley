@@ -17,18 +17,18 @@ namespace UI
         }
         public void Start(Order order)
         {
-            Log.Information("Order Location: " + order.Product.Location);
+            Log.Information("Order Location: " + order.Store.Location);
 
             begin:
             string name = "";
             bool match = false;
             List<Customer> matchedCustomers = new List<Customer>();
 
-            
-            Console.WriteLine($"Welcome to the {order.Product.Location} Krusty Krab. Gimme your name?");
+            Console.Clear();
+            Console.WriteLine($"Welcome to the {order.Store.Location} Krusty Krab. Gimme your name?");
             
             name = Console.ReadLine();
-            //TODO
+
             //Search DB for input
             List<Customer> allCustomers = _bl.GetAllCustomers();
             foreach(Customer cust in allCustomers)
@@ -45,6 +45,7 @@ namespace UI
                 Console.WriteLine("And your password?");
                 string password = Console.ReadLine();
 
+                //Will only check the password against the first customer with that name
                 foreach(Customer cust in matchedCustomers)
                 {
                     if(cust.Password == password)
@@ -55,7 +56,7 @@ namespace UI
                     }
                     else
                     {
-                        Console.WriteLine("That was the wrong password, so who are you really?");
+                        Console.WriteLine($"That was the wrong password. Are you really {cust.Name}?");
                         goto begin;
                     }
                 }
@@ -66,6 +67,7 @@ namespace UI
                 Console.WriteLine("Think of a password, so nobody impersonates you.");
                 string password = Console.ReadLine();
                 order.Customer = new Customer(name, password);
+                _bl.AddCustomer(order.Customer);
                 Log.Information("Created new Customer: " + order.Customer.Name + " " + order.Customer.Password);
                 MenuFactory.GetMenu("order").Start(order);
             }

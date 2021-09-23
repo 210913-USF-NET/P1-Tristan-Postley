@@ -23,5 +23,17 @@ namespace StoreBL
         {
             return _repo.GetAllCustomers();
         }
+        public Customer AddCustomer(Customer customer)
+        {
+            return _repo.AddCustomer(customer);
+        }
+        public List<Product> GetAllProducts()
+        {
+            return _repo.GetAllProducts();
+        }
+        public Order AddOrder(Order order)
+        {
+            return _repo.AddOrder(order);
+        }
     }
 }

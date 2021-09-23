@@ -2,8 +2,8 @@ namespace Models
 {
     public class Inventory
     {
-        public Product Item {get; set;}
+        public int Amount {get; set;}
+        public int Id {get; set;}
 
-        public int Quantity {get; set;}
     }
 }

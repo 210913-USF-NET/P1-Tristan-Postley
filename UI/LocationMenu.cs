@@ -2,8 +2,6 @@ using System;
 using Models;
 using StoreBL;
 using System.Collections.Generic;
-using StoreBL;
-using DL;
 namespace UI
 {
     public class LocationMenu : IMenu
@@ -18,9 +16,9 @@ namespace UI
         {
             bool exit = false;
             string input = "";
-            string selectedLocation = "";
             do
             {
+                Console.Clear();
                 Console.WriteLine("You are hungry for a Krabby Patty. Where would you like to go?");
                 
                 List<Store> allStores = _bl.GetAllStores();
@@ -44,12 +42,9 @@ namespace UI
                     case "0":
                     case "1":
                     case "2":  
-                        selectedLocation = allStores[int.Parse(input)].Location;
-                        // Console.WriteLine(allStores[int.Parse(input)].Location);
-                        order.Store = new Store();
-                        order.Store.Location = selectedLocation;
+                        // order.Store = new Store();
+                        order.Store = allStores[int.Parse(input)];
                         MenuFactory.GetMenu("name").Start(order);
-                        // new NameMenu(new BL(new ExampleRepo())).Greet(selectedLocation);
                         break;
                     case "x":
                         Console.WriteLine("Be that way.");

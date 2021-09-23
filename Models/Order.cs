@@ -5,9 +5,12 @@ namespace Models
     public class Order
     {
         public Customer Customer {get; set;}
-        public int Quantity {get; set;}
-        public Product Product {get; set;}
-
+        public int CustomerId {get; set;}
+        public List<LineItem> LineItems {get; set;}
         public Store Store {get; set;}
+        public int StoreId {get; set;}
+
+        public int Id {get; set;}
+
     }
 }

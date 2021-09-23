@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Models;
 using StoreBL;
 using Serilog;
+using ConsoleTables;
 
 namespace UI
 {
@@ -20,34 +22,61 @@ namespace UI
             bool exit = false;
             string input = "";
             int quantity = 0;
-            string selectedLocation = "";
-            order.Product = new Product();
             do
             {
+                Console.Clear();
                 Console.WriteLine("Let me guess, you want a Krabby Patty?");
-                Console.WriteLine("[0] Plain Krabby Patty");
-                Console.WriteLine("[1] Krabby Patty");
-                Console.WriteLine("[2] Deluxe Krabby Patty");
+
+                List<Product> allProducts = _bl.GetAllProducts();
+                if(allProducts == null || allProducts.Count == 0)
+                {
+                    Console.WriteLine("No Products");
+                    return;
+                }
+
+                var table = new ConsoleTable("", "", "");
+                for(int i = 0; i < allProducts.Count; i++)
+                {
+                    table.AddRow($"[{i}]", $"{allProducts[i].Item}", $"{allProducts[i].Price}");
+                }
+                table.Write(Format.Minimal);
                 Console.WriteLine("[x] Exit");
 
                 input = Console.ReadLine();
 
-                Console.WriteLine("How many?");
-
-                quantity = int.Parse(Console.ReadLine());
-
-                if(quantity < 1) Console.WriteLine("Then why are you here?");
 
                 switch (input)
                 {
                     case "0":
-                        selectedLocation = "Bikini Bottom";
-                        break;
                     case "1":
-                        selectedLocation = "Tentacle Acres";
-                        break;
-                    case "2":  
-                        selectedLocation = "New Kelp City";
+                    case "2":
+                        Product orderedProd = new Product();
+                        orderedProd.Item = allProducts[int.Parse(input)].Item;
+                        orderedProd.Price = allProducts[int.Parse(input)].Price;
+                
+                        // order.Product = new Product();
+                        // order.Product.Item = allProducts[int.Parse(input)].Item;
+
+                        Console.WriteLine("How many?");
+                        int.TryParse(Console.ReadLine(), out quantity);
+                        if(quantity < 1) 
+                        {
+                            Console.Clear();
+                            Console.WriteLine("*Blank stare*");
+                            System.Threading.Thread.Sleep(1000);
+                            break;
+                        }
+                        else
+                        {
+                            //Add order to DB
+                            LineItem lineItem = new LineItem();
+                            lineItem.Item = orderedProd;
+                            lineItem.Quantity = quantity;
+                            order.LineItems = new List<LineItem>();
+                            order.LineItems.Add(lineItem);
+                            _bl.AddOrder(order);
+
+                        }
                         break;
                     case "x":
                         Console.WriteLine("Be that way.");
@@ -57,6 +86,7 @@ namespace UI
                         Console.WriteLine("That wasn't an option");
                         break;
                 }
+
 
 
             } while (!exit);

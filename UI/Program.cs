@@ -10,10 +10,6 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            // Console.WriteLine("Welcome to my store!");
-
-            // new MainMenu(new BL(new ExampleRepo())).Start();
-
              //Logger
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
