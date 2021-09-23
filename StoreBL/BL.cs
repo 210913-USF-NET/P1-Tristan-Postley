@@ -35,5 +35,9 @@ namespace StoreBL
         {
             return _repo.AddOrder(order);
         }
+        public LineItem AddLineItem(Order order)
+        {
+            return _repo.AddLineItem(order);
+        }
     }
 }

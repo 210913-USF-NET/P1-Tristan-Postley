@@ -58,12 +58,12 @@ namespace DL.Entities
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.LineItems)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__LineItems__Order__6E01572D");
+                    .HasConstraintName("FK__LineItems__Order__7B5B524B");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.LineItems)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__LineItems__Produ__6EF57B66");
+                    .HasConstraintName("FK__LineItems__Produ__7C4F7684");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -75,18 +75,13 @@ namespace DL.Entities
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Orders__Customer__693CA210");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__Orders__ProductI__6A30C649");
+                    .HasConstraintName("FK__Orders__Customer__76969D2E");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.StoreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Orders__StoreId__6B24EA82");
+                    .HasConstraintName("FK__Orders__StoreId__778AC167");
             });
 
             modelBuilder.Entity<Product>(entity =>

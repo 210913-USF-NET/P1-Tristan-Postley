@@ -22,11 +22,14 @@ namespace UI
             bool exit = false;
             string input = "";
             int quantity = 0;
+            decimal total = 0;
+            order = _bl.AddOrder(order);
             do
             {
                 Console.Clear();
                 Console.WriteLine("Let me guess, you want a Krabby Patty?");
 
+                menu:
                 List<Product> allProducts = _bl.GetAllProducts();
                 if(allProducts == null || allProducts.Count == 0)
                 {
@@ -50,12 +53,7 @@ namespace UI
                     case "0":
                     case "1":
                     case "2":
-                        Product orderedProd = new Product();
-                        orderedProd.Item = allProducts[int.Parse(input)].Item;
-                        orderedProd.Price = allProducts[int.Parse(input)].Price;
-                
-                        // order.Product = new Product();
-                        // order.Product.Item = allProducts[int.Parse(input)].Item;
+                        Product orderedProd = allProducts[int.Parse(input)];
 
                         Console.WriteLine("How many?");
                         int.TryParse(Console.ReadLine(), out quantity);
@@ -68,27 +66,42 @@ namespace UI
                         }
                         else
                         {
-                            //Add order to DB
+                            //Create LineItem
                             LineItem lineItem = new LineItem();
                             lineItem.Item = orderedProd;
                             lineItem.Quantity = quantity;
-                            order.LineItems = new List<LineItem>();
-                            order.LineItems.Add(lineItem);
-                            _bl.AddOrder(order);
+                            order.LineItem = lineItem;
+
+                            //Add LineItem to DB
+                            _bl.AddLineItem(order);
+
+                            total += lineItem.Quantity * lineItem.Item.Price;
+
+                            Console.Clear();
+                            Console.WriteLine("Anything else?");
+                            goto menu;
 
                         }
-                        break;
+                        // break;
                     case "x":
-                        Console.WriteLine("Be that way.");
+                        Console.Clear();
+                        if(total > 0) 
+                        {
+                            Console.WriteLine($"That'll be {total}");
+                            Console.ReadKey();
+                        }
+                        else 
+                        {
+                            Console.WriteLine("Be that way.");
+                            System.Threading.Thread.Sleep(2000);
+                        }
                         exit = true;
                         break;
                     default:
                         Console.WriteLine("That wasn't an option");
+                        System.Threading.Thread.Sleep(2000);
                         break;
                 }
-
-
-
             } while (!exit);
         }
     }

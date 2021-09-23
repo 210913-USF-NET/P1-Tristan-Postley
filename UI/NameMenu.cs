@@ -31,6 +31,8 @@ namespace UI
 
             //Search DB for input
             List<Customer> allCustomers = _bl.GetAllCustomers();
+
+
             foreach(Customer cust in allCustomers)
             {
                 if(cust.Name.ToLower() == name.ToLower())
@@ -57,6 +59,7 @@ namespace UI
                     else
                     {
                         Console.WriteLine($"That was the wrong password. Are you really {cust.Name}?");
+                        System.Threading.Thread.Sleep(3000);
                         goto begin;
                     }
                 }
@@ -67,7 +70,7 @@ namespace UI
                 Console.WriteLine("Think of a password, so nobody impersonates you.");
                 string password = Console.ReadLine();
                 order.Customer = new Customer(name, password);
-                _bl.AddCustomer(order.Customer);
+                order.Customer = _bl.AddCustomer(order.Customer);
                 Log.Information("Created new Customer: " + order.Customer.Name + " " + order.Customer.Password);
                 MenuFactory.GetMenu("order").Start(order);
             }

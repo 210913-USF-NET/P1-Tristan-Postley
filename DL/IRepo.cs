@@ -11,6 +11,8 @@ namespace DL
         List<Product> GetAllProducts();
         List<Order> GetAllOrders();
         Order AddOrder(Order order);
+        LineItem AddLineItem(Order order);
+
 
     }
 }

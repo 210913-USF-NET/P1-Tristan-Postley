@@ -36,6 +36,7 @@ namespace DL
         {
             return _context.Products.Select(
                 product => new Model.Product() {
+                    Id = product.Id,
                     Item = product.Item,
                     Price = (decimal)product.Price
                 }
@@ -101,6 +102,30 @@ namespace DL
                 Id = orderToAdd.Id,
                 CustomerId = (int)orderToAdd.CustomerId,
                 StoreId = orderToAdd.StoreId
+            };
+        }
+        public Model.LineItem AddLineItem(Model.Order order)
+        {
+            Entity.LineItem lineItemToAdd = new Entity.LineItem()
+            {
+                OrderId = order.Id,
+                ProductId = order.LineItem.Item.Id,
+                Quantity = order.LineItem.Quantity
+            };
+
+            //Adds the orderToAdd obj to change tracker
+            lineItemToAdd = _context.Add(lineItemToAdd).Entity;
+            //Changes don't get executed until you call SaveChanges
+            _context.SaveChanges();
+            //Clears the changeTracker so it returns a clean slate
+            _context.ChangeTracker.Clear();
+
+            return new Model.LineItem()
+            {
+                Id = lineItemToAdd.Id,
+                OrderId = (int)lineItemToAdd.OrderId,
+                ProductId = (int)lineItemToAdd.ProductId,
+                Quantity = (int)lineItemToAdd.Quantity
             };
         }
 

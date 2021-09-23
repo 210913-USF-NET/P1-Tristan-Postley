@@ -10,5 +10,6 @@ namespace StoreBL
         Customer AddCustomer(Customer customer);
         List<Product> GetAllProducts();
         Order AddOrder(Order order);
+        LineItem AddLineItem(Order order);
     }
 }
