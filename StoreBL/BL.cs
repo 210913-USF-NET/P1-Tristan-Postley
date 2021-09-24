@@ -39,5 +39,9 @@ namespace StoreBL
         {
             return _repo.AddLineItem(order);
         }
+        public decimal CalculateDailyTotal()
+        {
+            return _repo.CalculateDailyTotal();
+        }
     }
 }

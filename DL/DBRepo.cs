@@ -17,10 +17,6 @@ namespace DL
         {
             _context = context;
         }
-        // public Model.Restaurant AddRestaurant(Model.Restaurant resto)
-        // {
-        //     throw new NotImplementedException();
-        // }
 
         public List<Model.Store> GetAllStores()
         {
@@ -42,12 +38,6 @@ namespace DL
                 }
             ).ToList();
         }
-
-        // public Model.Restaurant UpdateRestaurant(Model.Restaurant restaurantToUpdate)
-        // {
-        //     throw new NotImplementedException();
-        // }
-
         public List<Model.Customer> GetAllCustomers()
         {
             return _context.Customers.Select(
@@ -131,7 +121,14 @@ namespace DL
 
         public List<Model.Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return _context.Orders.Select(
+                order => new Model.Order() {
+                    Id = (int)order.Id,
+                    CustomerId = (int)order.CustomerId,
+                    StoreId = (int)order.StoreId,
+                    Date = order.Time.ToString()
+                }
+            ).ToList();
         }
     }
 } 

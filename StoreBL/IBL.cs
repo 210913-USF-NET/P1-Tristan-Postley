@@ -11,5 +11,6 @@ namespace StoreBL
         List<Product> GetAllProducts();
         Order AddOrder(Order order);
         LineItem AddLineItem(Order order);
+        decimal CalculateDailyTotal();
     }
 }

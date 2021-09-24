@@ -12,6 +12,7 @@ namespace Models
         public int StoreId {get; set;}
 
         public int Id {get; set;}
+        public string Date {get; set;}
 
     }
 }

@@ -28,10 +28,11 @@ namespace UI
             Console.WriteLine($"Welcome to the {order.Store.Location} Krusty Krab. Gimme your name?");
             
             name = Console.ReadLine();
-
+            //Start admin menu if Mr. Krabs
+            if(name.Equals("Krabs")) MenuFactory.GetMenu("admin").Start(new Order());
+            
             //Search DB for input
             List<Customer> allCustomers = _bl.GetAllCustomers();
-
 
             foreach(Customer cust in allCustomers)
             {
