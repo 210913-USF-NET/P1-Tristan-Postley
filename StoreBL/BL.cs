@@ -39,9 +39,10 @@ namespace StoreBL
         {
             return _repo.AddLineItem(order);
         }
-        public decimal CalculateDailyTotal()
+        public List<Order> GetAllOrders()
         {
-            return _repo.CalculateDailyTotal();
+            return _repo.GetAllOrders();
         }
+
     }
 }

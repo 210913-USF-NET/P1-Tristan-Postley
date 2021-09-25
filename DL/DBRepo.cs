@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Model = Models;
 using Entity = DL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DL
 {
@@ -121,14 +122,47 @@ namespace DL
 
         public List<Model.Order> GetAllOrders()
         {
-            return _context.Orders.Select(
-                order => new Model.Order() {
-                    Id = (int)order.Id,
-                    CustomerId = (int)order.CustomerId,
-                    StoreId = (int)order.StoreId,
-                    Date = order.Time.ToString()
-                }
-            ).ToList();
+            // throw new NotImplementedException();
+
+            // return _context.Orders.Select(
+            //     order => new Model.Order() {
+            //         Id = (int)order.Id,
+            //         CustomerId = (int)order.CustomerId,
+            //         StoreId = (int)order.StoreId,
+            //         Date = order.Time.ToString()
+            //     }
+            // ).ToList();
+            
+
+            var query = from o in _context.Orders
+                join li in _context.LineItems on o.Id equals li.OrderId
+                join cust in _context.Customers on o.CustomerId equals cust.Id
+                join prod in _context.Products on li.ProductId equals prod.Id
+                join s in _context.Stores on o.StoreId equals s.Id
+                select new Model.Order
+                {
+                    Id = o.Id,
+                    Customer = new Model.Customer 
+                    {
+                        Name = cust.Name
+                    },
+                    LineItem = new Model.LineItem 
+                    {
+                        Quantity = (int)li.Quantity, 
+                        Item = new Model.Product 
+                        {
+                            Price = (decimal)prod.Price,
+                            Item = prod.Item
+                        }
+                    },
+                    Date = o.Time.ToString(),
+                    Store = new Model.Store
+                    {
+                        Location = s.Location
+                    }
+                };
+
+            return query.ToList();
         }
     }
 } 
