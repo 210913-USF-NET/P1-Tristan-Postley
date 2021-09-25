@@ -187,6 +187,7 @@ namespace UI
                                     }
                                 }
 
+                                storeMenu:
                                 Console.Clear();
                                 Console.WriteLine($"What do you want to know about the {selectedStore} Krusty Krab?");
                                 Console.WriteLine("");
@@ -283,7 +284,22 @@ namespace UI
                                         break;
                                     case "1":
                                         //View Inventory
-                                        break;
+                                        List<Inventory> allInv = _bl.GetAllInventories();
+                                        var invTable = new ConsoleTable("Product","Inventory");
+                                        foreach (var item in allInv)
+                                        {
+                                            if(item.Store.Location == selectedStore)
+                                            {
+                                                // Console.WriteLine(item.Product.Item + item.Amount);
+                                                invTable.AddRow($"{item.Product.Item}", 
+                                                                $"{item.Amount}");
+                                            }
+                                        }
+                                        invTable.Write(Format.Minimal);
+                                        Console.ReadKey();
+
+                                        goto storeMenu;
+                                        // break;
                                     case "2":
                                         //Add to Inventory
                                         break;

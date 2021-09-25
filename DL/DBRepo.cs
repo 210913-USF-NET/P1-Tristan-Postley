@@ -28,6 +28,27 @@ namespace DL
                 }
             ).ToList();
         }
+        public List<Model.Inventory> GetAllInventories()
+        {
+            var query = from i in _context.Inventories
+                join s in _context.Stores on i.StoreId equals s.Id
+                join p in _context.Products on i.ProductId equals p.Id
+                select new Model.Inventory
+                {
+                    Id = i.Id,
+                    Store = new Model.Store() 
+                    {
+                        Location = s.Location,
+                    },
+                    Product = new Model.Product()
+                    {
+                        Item = p.Item
+                    },
+                    Amount = (int)i.Amount
+                };
+            
+            return query.ToList();
+        }
 
         public List<Model.Product> GetAllProducts()
         {
@@ -121,18 +142,7 @@ namespace DL
         }
 
         public List<Model.Order> GetAllOrders()
-        {
-            // throw new NotImplementedException();
-
-            // return _context.Orders.Select(
-            //     order => new Model.Order() {
-            //         Id = (int)order.Id,
-            //         CustomerId = (int)order.CustomerId,
-            //         StoreId = (int)order.StoreId,
-            //         Date = order.Time.ToString()
-            //     }
-            // ).ToList();
-            
+        {            
 
             var query = from o in _context.Orders
                 join li in _context.LineItems on o.Id equals li.OrderId

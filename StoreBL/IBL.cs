@@ -12,5 +12,6 @@ namespace StoreBL
         Order AddOrder(Order order);
         LineItem AddLineItem(Order order);
         List<Order> GetAllOrders();
+        List<Inventory> GetAllInventories();
     }
 }

@@ -43,6 +43,10 @@ namespace StoreBL
         {
             return _repo.GetAllOrders();
         }
+        public List<Inventory> GetAllInventories()
+        {
+            return _repo.GetAllInventories();
+        }
 
     }
 }
