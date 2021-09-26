@@ -24,6 +24,7 @@ namespace UI
             int quantity = 0;
             decimal total = 0;
             order = _bl.AddOrder(order);
+            Product orderedProd = new Product();
             do
             {
                 Console.Clear();
@@ -48,12 +49,13 @@ namespace UI
                 input = Console.ReadLine();
 
 
+
                 switch (input)
                 {
                     case "0":
                     case "1":
                     case "2":
-                        Product orderedProd = allProducts[int.Parse(input)];
+                        orderedProd = allProducts[int.Parse(input)];
 
                         Console.WriteLine("How many?");
                         int.TryParse(Console.ReadLine(), out quantity);
@@ -76,6 +78,17 @@ namespace UI
                             _bl.AddLineItem(order);
 
                             total += lineItem.Quantity * lineItem.Item.Price;
+
+                            _bl.UpdateInventory(new Order() 
+                                {
+                                    StoreId = order.StoreId, 
+                                    LineItem = new LineItem() 
+                                    {
+                                        //Update inventory adds quantity to inventory so we add a negative value to remove some
+                                        Quantity = (quantity * -1), 
+                                        ProductId = orderedProd.Id
+                                    }
+                                });
 
                             Console.Clear();
                             Console.WriteLine("Anything else?");

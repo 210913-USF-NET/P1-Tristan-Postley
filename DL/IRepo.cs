@@ -13,6 +13,7 @@ namespace DL
         Order AddOrder(Order order);
         LineItem AddLineItem(Order order);
         List<Inventory> GetAllInventories();
+        Inventory UpdateInventory(Order order);
 
 
     }

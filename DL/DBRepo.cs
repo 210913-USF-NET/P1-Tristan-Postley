@@ -49,6 +49,17 @@ namespace DL
             
             return query.ToList();
         }
+        public Model.Inventory UpdateInventory(Model.Order order)
+        {
+            Entity.Inventory invToChange = _context.Inventories.First(i => i.StoreId == order.StoreId && i.ProductId == order.LineItem.ProductId);
+            invToChange.Amount += order.LineItem.Quantity;
+
+            // _context.Add(invToChange);
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+
+            return new Model.Inventory();
+        }
 
         public List<Model.Product> GetAllProducts()
         {

@@ -168,7 +168,6 @@ namespace UI
                         Console.WriteLine("[x] Nevermind");
 
                         string store = Console.ReadLine();
-                        string selectedStore = allStores[int.Parse(store)].Location;
 
                         bool askingAboutStore = true;
 
@@ -177,10 +176,11 @@ namespace UI
                             case "0":
                             case "1":
                             case "2":
+                                Store selectedStore = allStores[int.Parse(store)];
                                 List<Order> storesOrders = new List<Order>();
                                 foreach(var item in allOrders)
                                 {
-                                    if(selectedStore.ToLower() == item.Store.Location.ToLower()) 
+                                    if(selectedStore.Location.ToLower() == item.Store.Location.ToLower()) 
                                     {
                                         match = true;
                                         storesOrders.Add(item);
@@ -189,13 +189,13 @@ namespace UI
 
                                 storeMenu:
                                 Console.Clear();
-                                Console.WriteLine($"What do you want to know about the {selectedStore} Krusty Krab?");
+                                Console.WriteLine($"What do you want to know about the {selectedStore.Location} Krusty Krab?");
                                 Console.WriteLine("");
 
                                 Console.WriteLine("[0] Tell me about the orders.");
                                 Console.WriteLine("[1] How many patties do we have there.");
                                 Console.WriteLine("[2] Order more patties.");
-                                Console.WriteLine("[0] Nevermind.");
+                                Console.WriteLine("[x] Nevermind.");
 
                                 string menuSelection = Console.ReadLine();
 
@@ -288,7 +288,7 @@ namespace UI
                                         var invTable = new ConsoleTable("Product","Inventory");
                                         foreach (var item in allInv)
                                         {
-                                            if(item.Store.Location == selectedStore)
+                                            if(item.Store.Location == selectedStore.Location)
                                             {
                                                 // Console.WriteLine(item.Product.Item + item.Amount);
                                                 invTable.AddRow($"{item.Product.Item}", 
@@ -302,6 +302,39 @@ namespace UI
                                         // break;
                                     case "2":
                                         //Add to Inventory
+                                        Console.WriteLine("What kind?");
+                                        Console.WriteLine("");
+                                        Console.WriteLine("[0] Plain");
+                                        Console.WriteLine("[1] Regular");
+                                        Console.WriteLine("[2] Deluxe");
+
+                                        int pattyType;
+                                        if (!int.TryParse(Console.ReadLine(), out pattyType))
+                                        {
+                                            Console.WriteLine("What?");
+                                            goto storeMenu;
+                                        } 
+                                        //Produce product id without querying db 
+                                        int productId = pattyType + 1;
+
+
+                                        Console.WriteLine("How many?");
+                                        int numberToOrder = 0;
+                                        if (!int.TryParse(Console.ReadLine(), out numberToOrder)) 
+                                        {
+                                            Console.WriteLine("What?");
+                                            goto storeMenu;
+                                        }
+                                        
+                                        _bl.UpdateInventory(new Order() 
+                                        {
+                                            StoreId = selectedStore.Id, 
+                                            LineItem = new LineItem() 
+                                            {
+                                                Quantity = numberToOrder, 
+                                                ProductId = productId
+                                            }
+                                        });
                                         break;
                                     case "x":
                                         break;

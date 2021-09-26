@@ -47,6 +47,10 @@ namespace StoreBL
         {
             return _repo.GetAllInventories();
         }
+        public Inventory UpdateInventory(Order order)
+        {
+            return _repo.UpdateInventory(order);
+        }
 
     }
 }

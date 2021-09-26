@@ -13,5 +13,6 @@ namespace StoreBL
         LineItem AddLineItem(Order order);
         List<Order> GetAllOrders();
         List<Inventory> GetAllInventories();
+        Inventory UpdateInventory(Order order);
     }
 }
