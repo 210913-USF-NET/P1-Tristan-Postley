@@ -124,7 +124,9 @@ namespace DL
             {
                 Id = orderToAdd.Id,
                 CustomerId = (int)orderToAdd.CustomerId,
-                StoreId = orderToAdd.StoreId
+                StoreId = orderToAdd.StoreId,
+                Customer = order.Customer,
+                Store = order.Store
             };
         }
         public Model.LineItem AddLineItem(Model.Order order)

@@ -6,6 +6,7 @@ using Entity = DL.Entities;
 using Xunit;
 using DL;
 using Models;
+using System.Linq;
 
 namespace Tests
 {
@@ -45,6 +46,7 @@ namespace Tests
         //Test using 2 contexts
         //1 to arrange and act
         //another to directly access the data with context
+        [Fact]
         public void AddingACustomerShouldAddCustomer()
         {
             using(Entity.KrustyKrabDBContext context = new Entity.KrustyKrabDBContext(options))
@@ -57,23 +59,59 @@ namespace Tests
                     Name = "Test 3",
                     Password = "Pass 3"
                 };
-                repo.AddCustomer(custToAdd);
 
                 //Act
+                repo.AddCustomer(custToAdd);
 
-                //Assert
             }
+            //Assert
+            using(var context = new Entity.KrustyKrabDBContext(options))
+            {
+                Entity.Customer cust = context.Customers.FirstOrDefault(c => c.Id == 3);
 
-            // using(Entity.KrustyKrabDBContext context = new Entity.KrustyKrabDBContext(options))
-            // {
-            //     //Assert
-            //     Entity.Customer cust =  context.Customers.FirstOrDefault(c => c.Id == 3);
+                Assert.NotNull(cust);
+                Assert.Equal("Test 3", cust.Name);
+                Assert.Equal("Pass 3", cust.Password);
 
-            //     Assert.NotNull(cust);
-            //     Assert.Equal(cust.Name, "Test 3");
-
-            // }
+            }
         }
+
+        // [Fact]
+        // public void AddingAnOrderShouldAddOrder()
+        // {
+        //     using(Entity.KrustyKrabDBContext context = new Entity.KrustyKrabDBContext(options))
+        //     {
+        //         //Arrange
+        //         IRepo repo = new DBRepo(context);
+        //         Models.Order orderToAdd = new Models.Order()
+        //         {
+        //             Id = 3,
+        //             // CustomerId = 3,
+        //             Customer = new Customer(){Id = 3},
+        //             // LineItem = new LineItem(),
+        //             Store = new Store(){Id = 3}
+        //             // StoreId = 2
+        //             // Date = "Date"
+        //         };
+
+        //         //Act
+        //         repo.AddOrder(orderToAdd);
+
+        //     }
+        //     //Assert
+        //     using(var context = new Entity.KrustyKrabDBContext(options))
+        //     {
+        //         Entity.Order order = context.Orders.FirstOrDefault(o => o.Id == 3);
+
+        //         Assert.NotNull(order);
+        //         // Assert.IsType<Models.Customer>(order.Customer);
+        //         // Assert.IsType<Models.LineItem>(order.LineItem);
+        //         // Assert.IsType<Models.Store>(order.Store);
+        //         Assert.Equal(3, order.StoreId);
+        //         Assert.Equal(3, order.CustomerId);
+        //         // Assert.Equal(, order.Time);
+        //     }
+        // }
 
         private void Seed()
         {
@@ -97,6 +135,22 @@ namespace Tests
                         Password = "Pass 2"
                     }
                 );
+
+                // context.Orders.AddRange(
+                //     new Entity.Order()
+                //     {
+                //         Id = 1,
+                //         StoreId = 1,
+                //         CustomerId = 1
+                //     },
+                //     new Entity.Order()
+                //     {
+                //         Id = 2,
+                //         StoreId = 2,
+                //         CustomerId = 2
+                //     }
+                    
+                // );
 
                 context.SaveChanges();
             }

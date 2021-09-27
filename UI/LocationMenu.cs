@@ -2,6 +2,7 @@ using System;
 using Models;
 using StoreBL;
 using System.Collections.Generic;
+using Serilog;
 namespace UI
 {
     public class LocationMenu : IMenu
@@ -42,16 +43,18 @@ namespace UI
                     case "0":
                     case "1":
                     case "2":  
-                        // order.Store = new Store();
                         order.Store = allStores[int.Parse(input)];
+                        Log.Information($"Selected store at location: {order.Store.Location}");
                         MenuFactory.GetMenu("name").Start(order);
                         break;
                     case "x":
                         Console.WriteLine("Be that way.");
+                        Log.Information("Exited from selecting location");
                         exit = true;
                         break;
                     default:
                         Console.WriteLine("That wasn't an option");
+                        Log.Information("Tried to select invalid location");
                         break;
                 }
             } while (!exit);

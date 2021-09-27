@@ -33,7 +33,7 @@ namespace UI
                 Console.WriteLine("");
 
                 Console.WriteLine("[0] Tell me about the customers.");
-                Console.WriteLine("[1] Tell me about the stores?");
+                Console.WriteLine("[1] Tell me about the stores.");
                 Console.WriteLine("[2] Remind me, whats the Secret Formula?");
                 Console.WriteLine("[3] How much money have I made?");
                 Console.WriteLine("[x] Back to work!");
@@ -146,6 +146,7 @@ namespace UI
                             {
                                 Console.WriteLine("They haven't ordered anything.");
                                 System.Threading.Thread.Sleep(2000);
+                                askingAboutCustomer = false;
                             }
                         } while(askingAboutCustomer);
                         break;
@@ -325,7 +326,7 @@ namespace UI
                                             Console.WriteLine("What?");
                                             goto storeMenu;
                                         }
-                                        
+
                                         _bl.UpdateInventory(new Order() 
                                         {
                                             StoreId = selectedStore.Id, 
