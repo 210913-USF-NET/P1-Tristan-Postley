@@ -19,6 +19,8 @@ namespace UI
         }
         public void Start(Order order)
         {
+            Log.Information("Admin has logged in");
+
             string input = "";
             bool exit = false;
             List<Order> allOrders = _bl.GetAllOrders();
@@ -43,10 +45,12 @@ namespace UI
                 switch(input)
                 {
                     case "0":
+
                         askingAboutCustomer = true;
                         Console.Clear();
                         Console.WriteLine("Which one?");
                         string customer = Console.ReadLine();
+                        Log.Information($"User asked about customer named '{customer}'");
 
                         //Loop through orders to see if the requested customer exists
                         foreach(var item in allOrders)
@@ -187,6 +191,7 @@ namespace UI
                                         storesOrders.Add(item);
                                     }
                                 }
+                                Log.Information($"User has asked about store at {selectedStore.Location}");
 
                                 storeMenu:
                                 Console.Clear();
@@ -291,13 +296,13 @@ namespace UI
                                         {
                                             if(item.Store.Location == selectedStore.Location)
                                             {
-                                                // Console.WriteLine(item.Product.Item + item.Amount);
                                                 invTable.AddRow($"{item.Product.Item}", 
                                                                 $"{item.Amount}");
                                             }
                                         }
                                         invTable.Write(Format.Minimal);
                                         Console.ReadKey();
+                                        Log.Information($"User has viewed inventory for {selectedStore.Location} Krusty Krab");
 
                                         goto storeMenu;
                                         // break;
@@ -336,6 +341,8 @@ namespace UI
                                                 ProductId = productId
                                             }
                                         });
+                                        Log.Information($"User has added {numberToOrder} to product {productId} at {selectedStore.Location}");
+                                    
                                         break;
                                     case "x":
                                         break;
@@ -357,6 +364,8 @@ namespace UI
                         break;
 
                     case "2":
+                        Log.Information("User asked for Secret Formula");
+
                         Console.WriteLine("*Sighs*");
                         System.Threading.Thread.Sleep(1000);
 
@@ -365,23 +374,27 @@ namespace UI
                         break;
 
                     case "3":
+                        Log.Information("User asked for grand total");
+
                         float total = 0;
                         foreach(var item in allOrders)
                         {
                             total += (float)(item.LineItem.Quantity * item.LineItem.Item.Price);
                         }
                         Console.Clear();
-                        Console.WriteLine(total);
+                        Console.WriteLine(Math.Round(total, 2));
                         Console.ReadKey();
                         break;
 
                     case "x":
                         exit = true;
                         //Closes app, does this interfere with Logs?
+                        Log.Information("App closed by admin");
                         Environment.Exit(0);
                         break;
 
                     default:
+                        Log.Information("User input invalid option");
                         Console.WriteLine("That wasn't an option.");
                         break;
                 }
