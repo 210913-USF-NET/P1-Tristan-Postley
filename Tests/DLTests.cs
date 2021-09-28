@@ -42,6 +42,38 @@ namespace Tests
             }
         }
 
+        [Fact]
+        public void GetAllStoresShouldGetAllStores()
+        {
+            using(Entity.KrustyKrabDBContext context = new Entity.KrustyKrabDBContext(options))
+            {
+                //Arrange
+                IRepo repo = new DBRepo(context);
+
+                //Act
+                var stores = repo.GetAllCustomers();
+
+                //Assert
+                Assert.Equal(2, stores.Count);
+            }
+        }
+
+        // [Fact]
+        // public void GetAllOrdersShouldGetAllOrders()
+        // {
+        //     using(Entity.KrustyKrabDBContext context = new Entity.KrustyKrabDBContext(options))
+        //     {
+        //         //Arrange
+        //         IRepo repo = new DBRepo(context);
+
+        //         //Act
+        //         var orders = repo.GetAllOrders();
+
+        //         //Assert
+        //         Assert.Equal(2, orders.Count);
+        //     }
+        // }
+
         //For anything that modifies a data set (Write, Update, Delete)
         //Test using 2 contexts
         //1 to arrange and act
@@ -76,42 +108,35 @@ namespace Tests
             }
         }
 
-        // [Fact]
-        // public void AddingAnOrderShouldAddOrder()
-        // {
-        //     using(Entity.KrustyKrabDBContext context = new Entity.KrustyKrabDBContext(options))
-        //     {
-        //         //Arrange
-        //         IRepo repo = new DBRepo(context);
-        //         Models.Order orderToAdd = new Models.Order()
-        //         {
-        //             Id = 3,
-        //             // CustomerId = 3,
-        //             Customer = new Customer(){Id = 3},
-        //             // LineItem = new LineItem(),
-        //             Store = new Store(){Id = 3}
-        //             // StoreId = 2
-        //             // Date = "Date"
-        //         };
+        [Fact]
+        public void AddingAnOrderShouldAddOrder()
+        {
+            using(Entity.KrustyKrabDBContext context = new Entity.KrustyKrabDBContext(options))
+            {
+                //Arrange
+                IRepo repo = new DBRepo(context);
+                Models.Order orderToAdd = new Models.Order()
+                {
+                    Id = 3,
+                    Customer = new Customer(){Id = 2},
+                    Store = new Store(){Id = 2},
+                    Date = "9/28/2021"
+                };
 
-        //         //Act
-        //         repo.AddOrder(orderToAdd);
+                //Act
+                repo.AddOrder(orderToAdd);
 
-        //     }
-        //     //Assert
-        //     using(var context = new Entity.KrustyKrabDBContext(options))
-        //     {
-        //         Entity.Order order = context.Orders.FirstOrDefault(o => o.Id == 3);
+            }
+            //Assert
+            using(var context = new Entity.KrustyKrabDBContext(options))
+            {
+                Entity.Order order = context.Orders.FirstOrDefault(o => o.Id == 3);
 
-        //         Assert.NotNull(order);
-        //         // Assert.IsType<Models.Customer>(order.Customer);
-        //         // Assert.IsType<Models.LineItem>(order.LineItem);
-        //         // Assert.IsType<Models.Store>(order.Store);
-        //         Assert.Equal(3, order.StoreId);
-        //         Assert.Equal(3, order.CustomerId);
-        //         // Assert.Equal(, order.Time);
-        //     }
-        // }
+                Assert.NotNull(order);
+                Assert.Equal(2, order.StoreId);
+                Assert.Equal(2, order.CustomerId);
+            }
+        }
 
         private void Seed()
         {
@@ -136,21 +161,43 @@ namespace Tests
                     }
                 );
 
-                // context.Orders.AddRange(
-                //     new Entity.Order()
-                //     {
-                //         Id = 1,
-                //         StoreId = 1,
-                //         CustomerId = 1
-                //     },
-                //     new Entity.Order()
-                //     {
-                //         Id = 2,
-                //         StoreId = 2,
-                //         CustomerId = 2
-                //     }
+                context.Stores.AddRange(
+                    new List<Entity.Store>{
+                        new Entity.Store()
+                        {
+                            Id = 1,
+                            Location = "Loc 1"
+                        },
+                        new Entity.Store()
+                        {
+                            Id = 2,
+                            Location = "Loc 2"
+                        }
+
+                    }
                     
-                // );
+                );
+
+                context.Orders.AddRange(
+                    new List<Entity.Order>{
+                        new Entity.Order()
+                        {
+                            Id = 1,
+                            StoreId = 1,
+                            CustomerId = 1,
+                            Time = DateTime.Now
+                        },
+                        new Entity.Order()
+                        {
+                            Id = 2,
+                            StoreId = 2,
+                            CustomerId = 2,
+                            Time = DateTime.Now
+                        }
+
+                    }
+                    
+                );
 
                 context.SaveChanges();
             }

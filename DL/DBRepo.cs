@@ -19,6 +19,10 @@ namespace DL
             _context = context;
         }
 
+        /// <summary>
+        /// Gets list of stores from DB
+        /// </summary>
+        /// <returns>A list of store objects</returns>
         public List<Model.Store> GetAllStores()
         {
             return _context.Stores.Select(
@@ -28,6 +32,11 @@ namespace DL
                 }
             ).ToList();
         }
+        
+        /// <summary>
+        /// Gets list of Inventories from DB
+        /// </summary>
+        /// <returns>A list of inventory objects</returns>
         public List<Model.Inventory> GetAllInventories()
         {
             var query = from i in _context.Inventories
@@ -49,6 +58,11 @@ namespace DL
             
             return query.ToList();
         }
+        
+        /// <summary>
+        /// Takes a StoreId and a ProductId and adds a Quantity to the matched inventory
+        /// </summary>
+        /// <returns>An empty inventory object</returns>
         public Model.Inventory UpdateInventory(Model.Order order)
         {
             Entity.Inventory invToChange = _context.Inventories.First(i => i.StoreId == order.StoreId && i.ProductId == order.LineItem.ProductId);
@@ -61,6 +75,10 @@ namespace DL
             return new Model.Inventory();
         }
 
+        /// <summary>
+        /// Gets list of products from DB
+        /// </summary>
+        /// <returns>A list of product objects</returns>
         public List<Model.Product> GetAllProducts()
         {
             return _context.Products.Select(
@@ -71,6 +89,11 @@ namespace DL
                 }
             ).ToList();
         }
+
+        /// <summary>
+        /// Gets list of customers from DB
+        /// </summary>
+        /// <returns>A list of customer objects</returns>
         public List<Model.Customer> GetAllCustomers()
         {
             return _context.Customers.Select(
@@ -82,6 +105,10 @@ namespace DL
             ).ToList();
         }
 
+        /// <summary>
+        /// Takes a name and password and creates a new record for the customer in the DB
+        /// </summary>
+        /// <returns>A customer object with the Id it was assigned</returns>
         public Model.Customer AddCustomer(Model.Customer customer)
         {
             Entity.Customer custToAdd = new Entity.Customer()
@@ -105,12 +132,17 @@ namespace DL
             };
         }
 
+        /// <summary>
+        /// Takes a customer Id and a Store Id and creates a new record for the order in the DB
+        /// </summary>
+        /// <returns>An order object with Id, CustomerId, and StoreId</returns>
         public Model.Order AddOrder(Model.Order order)
         {
             Entity.Order orderToAdd = new Entity.Order()
             {
                 CustomerId = order.Customer.Id,
-                StoreId = order.Store.Id
+                StoreId = order.Store.Id,
+                Time = order.Date != null? DateTime.Parse(order.Date) : null 
             };
 
              //Adds the orderToAdd obj to change tracker
@@ -129,6 +161,11 @@ namespace DL
                 Store = order.Store
             };
         }
+
+        /// <summary>
+        /// Takes an order Id, product Id, and Quantity and creates a new record for the LineItem
+        /// </summary>
+        /// <returns>A LineItem object with Id</returns>
         public Model.LineItem AddLineItem(Model.Order order)
         {
             Entity.LineItem lineItemToAdd = new Entity.LineItem()
@@ -154,6 +191,10 @@ namespace DL
             };
         }
 
+        /// <summary>
+        /// Gets list of orders from DB with Ids info from other tables inserted by FK Ids
+        /// </summary>
+        /// <returns>A list of orders with all relevant info in human readable format</returns>
         public List<Model.Order> GetAllOrders()
         {            
 
