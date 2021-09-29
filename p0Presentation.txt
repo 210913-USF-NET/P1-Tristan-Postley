@@ -1,0 +1,58 @@
+Hello and welcome to the bottom of the sea.
+Is anybody hungry.
+No? Too early, you say. Nonsense its always a good time for a Krabby Patty.
+
+Choose Location - Bikini Bottom
+Everybody say "Hi" to virtual Squidward 
+
+add a new customer - Tristan, password
+The customer should be able to purchase multiple products
+place orders to store locations for customers
+
+Choose Location - Tentacle Acres
+Plankton hired me to get the Secret Formula for Krabby Patties
+All I have to do is trick virtual Squidward into thinking I'm Mr. Krabs
+Sign in as 'Krabs'
+I don't want virtual Squidward to catch on so I'll ask a few routine questions first 
+search customers by name - Tell me about Patrick Star
+display details of an order
+view order history of customer
+
+Virtual Squidward has no idea I'm not the real Mr. Krabs, one more question and I'll go in for the kill
+view order history of location
+view location inventory
+The manager should be able to replenish inventory
+
+At last, time to find out the Secret Formula
+"It's a secret"
+Argh, foiled again. Damn that Krab and his impecable security
+
+Order histories should have the option to be sorted by date (latest to oldest and vice versa) or cost (least expensive to most expensive)
+
+
+Exception Handling - Tried to catch all potential inputs in menu
+Input validation
+Logging (to a file, no logging to the console)
+At least 10 unit tests
+Data should be persisted, (no data should be hard coded)
+You should use a DB to store data
+DB structure should be 3NF
+Should have an ER Diagram
+Code should have xml documentation
+
+Tech Stack
+	c#
+	XUnit
+	SQLServer DB
+	EFCore
+	Serilog
+
+In the future:
+Add products
+Add Stores
+Handle selection in dynamic menus
+Prevent order when inventory is empty
+Security
+
+
+Questions / Comments / Reacts
