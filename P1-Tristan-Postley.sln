@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{B64F1A0D-A76F-469B-9996-624C3D19BCF9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{6B310325-4EEF-44A9-9308-B06640CE1174}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DL", "DL\DL.csproj", "{AF83B7B8-BAA6-4FFF-996B-1934C96D00AF}"
@@ -13,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreBL", "StoreBL\StoreBL.csproj", "{95FBF71D-617B-4C6B-8F30-0CFD26484E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{F8F57CB4-BC32-4676-9D1E-961F433E5BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUI", "WebUI\WebUI.csproj", "{F8F57CB4-BC32-4676-9D1E-961F433E5BF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,18 +23,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Debug|x64.Build.0 = Debug|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Debug|x86.Build.0 = Debug|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Release|x64.ActiveCfg = Release|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Release|x64.Build.0 = Release|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Release|x86.ActiveCfg = Release|Any CPU
-		{B64F1A0D-A76F-469B-9996-624C3D19BCF9}.Release|x86.Build.0 = Release|Any CPU
 		{6B310325-4EEF-44A9-9308-B06640CE1174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B310325-4EEF-44A9-9308-B06640CE1174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B310325-4EEF-44A9-9308-B06640CE1174}.Debug|x64.ActiveCfg = Debug|Any CPU
