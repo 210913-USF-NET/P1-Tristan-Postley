@@ -1,0 +1,56 @@
+﻿@model Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Order</h1>
+<h1>@ViewBag.Customer</h1>
+
+
+<hr />
+<div class="form-group row d-flex justify-content-center text-center">
+    <form asp-action="AddToOrder" method="post">
+        <h4>Where would you like to order from?</h4>
+        <select onchange="SelectedIndexChanged()" name="Location" class="form-select form-select-lg" aria-label="Default select example">
+            <option selected>Bikini Bottom</option>
+            <option>Tentacle Acres</option>
+            <option>New Kelp City</option>
+        </select>
+        <h4>What would you like to order?</h4>
+        <select class="form-select form-select-lg" name="Product">
+            <option selected>Plain Krabby Patty</option>
+            <option>Krabby Patty</option>
+            <option>Deluxe Krabby Patty</option>
+        </select>
+        <select class="form-select form-select-lg" aria-label="Default select example">
+            <option selected>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <input class="btn btn-outline-secondary btn-sm" type="submit" name="response" value="Add to order" />
+    </form>
+</div>
+<div class="form-group row d-flex justify-content-center text-center">
+    <p>Current order view with total at the bottom</p>
+</div>
+<div class="form-group row d-flex justify-content-center text-center">
+    <input type="submit" value="Place Order" class="btn btn-primary" />
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @{
+        void Test()
+        {
+            System.Diagnostics.Debug.WriteLine("test");
+        }
+    }
+}
+<script type="text/javascript">
+    function SelectedIndexChanged() {
+        console.log("Test");
+    }
+</script>

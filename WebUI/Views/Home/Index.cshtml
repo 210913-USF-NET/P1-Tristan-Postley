@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Krusty Krab";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Krusty Krab</h1>
+    <h2>Home of the Krabby Patty&trade;</h2>
+    <h4>Login or create your account</h4>
+</div>
+
+<form asp-action="test" asp-controller="order" class="pt-5">
+    
+    <div class="form-group row justify-content-center">
+        <div class="col-form-label">
+            <label for="usr">Name:</label>
+        </div>
+        <div class="col-md-5">
+            <input name="name" type="text" class="form-control" id="usr">
+        </div>
+    </div>
+    <div class="form-group row justify-content-center">
+        <div class="row col-form-label">
+            <label for="pwd">Password:</label>
+        </div>
+        <div class="col-md-5">
+            <input name="password" type="password" class="form-control" id="pwd">
+        </div>
+    </div>
+    <div class="form-group row justify-content-center">
+
+        <input type="submit" class="btn btn-primary mr-3" value="Login">
+        <a class="btn btn-primary" asp-controller="Customer" asp-action="Create">Create Account</a>
+    </div>
+
+
+</form>
