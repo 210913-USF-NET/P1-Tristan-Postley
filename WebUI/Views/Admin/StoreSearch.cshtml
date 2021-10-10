@@ -1,22 +1,22 @@
-﻿@model IEnumerable<Models.Customer>
+﻿@model IEnumerable<Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "StoreSearch";
 }
 
-<h1>Customers</h1>
+<h1>Store Orders</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Location
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                Order Number
             </th>
             <th></th>
         </tr>
@@ -25,10 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Store.Location)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                @Html.DisplayFor(modelItem => item.Customer.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)

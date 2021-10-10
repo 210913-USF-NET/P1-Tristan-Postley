@@ -198,37 +198,47 @@ namespace DL
         /// </summary>
         /// <returns>A list of orders with all relevant info in human readable format</returns>
         public List<Order> GetAllOrders()
-        {            
-
-            var query = from o in _context.Orders
-                join li in _context.LineItems on o.Id equals li.OrderId
-                join cust in _context.Customers on o.CustomerId equals cust.Id
-                join prod in _context.Products on li.ProductId equals prod.Id
-                join s in _context.Stores on o.StoreId equals s.Id
-                select new Order
+        {
+            return _context.Orders.Select(
+                order => new Order()
                 {
-                    Id = o.Id,
-                    Customer = new Customer 
-                    {
-                        Name = cust.Name
-                    },
-                    LineItem = new LineItem 
-                    {
-                        Quantity = (int)li.Quantity, 
-                        Item = new Product 
-                        {
-                            Price = (decimal)prod.Price,
-                            Item = prod.Item
-                        }
-                    },
-                    Date = o.Date.ToString(),
-                    Store = new Store
-                    {
-                        Location = s.Location
-                    }
-                };
+                    Id = order.Id,
+                    Customer = order.Customer,
+                    LineItem = order.LineItem,
+                    Date = order.Date,
+                    Store = order.Store
+                }
+            ).ToList();
 
-            return query.ToList();
+            //var query = from o in _context.Orders
+            //    join li in _context.LineItems on o.Id equals li.OrderId
+            //    join cust in _context.Customers on o.CustomerId equals cust.Id
+            //    join prod in _context.Products on li.ProductId equals prod.Id
+            //    join s in _context.Stores on o.StoreId equals s.Id
+            //    select new Order
+            //    {
+            //        Id = o.Id,
+            //        Customer = new Customer 
+            //        {
+            //            Name = cust.Name
+            //        },
+            //        LineItem = new LineItem 
+            //        {
+            //            Quantity = (int)li.Quantity, 
+            //            Item = new Product 
+            //            {
+            //                Price = (decimal)prod.Price,
+            //                Item = prod.Item
+            //            }
+            //        },
+            //        Date = o.Date.ToString(),
+            //        Store = new Store
+            //        {
+            //            Location = s.Location
+            //        }
+            //    };
+
+            //return query.ToList();
         }
     }
 } 

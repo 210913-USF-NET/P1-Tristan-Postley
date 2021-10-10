@@ -9,49 +9,62 @@ using StoreBL;
 
 namespace WebUI.Controllers
 {
-    public class CustomerController : Controller
+    public class AdminController : Controller
     {
         private IBL _bl;
-        public CustomerController(IBL bl)
+        public AdminController(IBL bl)
         {
             _bl = bl;
         }
-        // GET: CustomerController
+
+        // GET: AdminController
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Customer()
         {
             List<Customer> allCustomers = _bl.GetAllCustomers();
             return View(allCustomers);
         }
+        public ActionResult Store()
+        {
+            List<Store> allStores = _bl.GetAllStores();
+            return View(allStores);
+        }
+        public ActionResult CustomerSearch()
+        {
+            IEnumerable<Order> customerOrders = _bl.GetAllOrders().Where(o => o.Customer.Name == Request.Form["CustomerSearch"]);
 
-        // GET: CustomerController/Details/5
+            return View(customerOrders);
+        }
+        public ActionResult StoreSearch()
+        {
+            IEnumerable<Order> storeOrders = _bl.GetAllOrders().Where(o => o.Store.Location == Request.Form["StoreSearch"]);
+
+            return View(storeOrders);
+        }
+
+        // GET: AdminController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: CustomerController/Create
+        // GET: AdminController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CustomerController/Create
+        // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                if(ModelState.IsValid)
-                {
-                    _bl.AddCustomer(customer);
-                    HttpContext.Session.SetString("CustomerID", customer.Id.ToString());
-                    HttpContext.Session.SetString("Customer", customer.Name);
-
-
-                    return RedirectToAction("create", "order");
-                }
-                return View();
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -59,13 +72,13 @@ namespace WebUI.Controllers
             }
         }
 
-        // GET: CustomerController/Edit/5
+        // GET: AdminController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CustomerController/Edit/5
+        // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -80,13 +93,13 @@ namespace WebUI.Controllers
             }
         }
 
-        // GET: CustomerController/Delete/5
+        // GET: AdminController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CustomerController/Delete/5
+        // POST: AdminController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

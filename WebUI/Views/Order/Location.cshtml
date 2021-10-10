@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Location";
+}
+
+<h1>Location</h1>
+@*<h1>@Context.Request.Cookies["Customer"]</h1>*@
+@{ 
+    byte[] customer;
+    Context.Session.TryGetValue("Customer", out customer);
+    <h1>@System.Text.Encoding.UTF8.GetString(customer)</h1>
+}
+
+<hr />
+<form name="Location" asp-action="Create" asp-controller="order" class="pt-5">
+
+    <div class="form-group row d-flex justify-content-center text-center">
+        <h4>Where would you like to order from?</h4>
+    </div>
+    <div class="form-group row d-flex justify-content-center text-center">
+        <select name="Location1" class="form-select form-select-lg">
+            <option value="Bikini Bottom">Bikini Bottom</option>
+            <option value="Tentacle Acres">Tentacle Acres</option>
+            <option value="New Kelp City">New Kelp City</option>
+        </select>
+    </div>
+    <div class="form-group row d-flex justify-content-center text-center">
+        <input type="submit" value="Select" class="btn btn-primary" />
+    </div>
+</form>

@@ -31,6 +31,7 @@ namespace WebUI
             services.AddDbContext<KKDBContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("KrustyKrabDB")));
 
+            services.AddSession();
             services.AddScoped<IRepo, DBRepo>();
             services.AddScoped<IBL, BL>();
         }
@@ -48,6 +49,7 @@ namespace WebUI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

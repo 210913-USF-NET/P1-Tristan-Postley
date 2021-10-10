@@ -11,12 +11,15 @@ namespace WebUI.Controllers
 {
     public class OrderController : Controller
     {
+        public static Order order = new Order();
+
         private IBL _bl;
         public OrderController(IBL bl)
         {
             _bl = bl;
         }
 
+ 
 
         // GET: OrderController
         public ActionResult Index()
@@ -33,30 +36,55 @@ namespace WebUI.Controllers
         // GET: OrderController/Create
         public ActionResult Create()
         {
-
-            //System.Diagnostics.Debug.WriteLine(Request.Form["name"]);
-            //System.Diagnostics.Debug.WriteLine(Request.Form["password"]);
-            //System.Diagnostics.Debug.WriteLine(ViewBag.Customer);
-
-            //ViewBag.Customer = Request.Form["name"];
             return View();
         }
-        public ActionResult StartOrder()
-        {
-            System.Diagnostics.Debug.WriteLine("TEST");
-            System.Diagnostics.Debug.WriteLine(Request.Form["name"]);
-            System.Diagnostics.Debug.WriteLine(Request.Form["password"]);
-            //order.Customer.Name = Request.Form["name"];
-            //ViewBag["Customer"] = new Customer(Request.Form["name"], Request.Form["password"]);
-            return RedirectToAction("create");
-        }
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddToOrder()
+        public ActionResult Location()
         {
-            System.Diagnostics.Debug.WriteLine(Request.Form["Location"]);
-            System.Diagnostics.Debug.WriteLine(Request.Form["Product"]);
+            //Goto Admin Menu
+            if(Request.Form["name"] == "Krabs" && Request.Form["password"] == "money")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            List<Customer> allCustomers = _bl.GetAllCustomers();
+            bool match = false;
+
+            foreach (Customer cust in allCustomers)
+            {
+                if (cust.Name == Request.Form["name"] && cust.Password == Request.Form["password"])
+                {
+                    match = true;
+                    HttpContext.Session.SetString("CustomerID", cust.Id.ToString());
+                    HttpContext.Session.SetString("Customer", Request.Form["name"]);
+                }
+            }
+            if (match) return View();
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddLineItem()
+        {
+            System.Diagnostics.Debug.WriteLine("Add LineItem");
+            System.Diagnostics.Debug.WriteLine(order.Id);
+
+            order.LineItem = new LineItem();
+            order.LineItem.Quantity = int.Parse(Request.Form["Quantity"]);
+            List<Product> allProd =_bl.GetAllProducts();
+            foreach (Product p in allProd)
+            {
+                if (p.Item == Request.Form["Product"])
+                {
+                    order.LineItem.Item = p;
+                }
+            }
+            LineItem li = _bl.AddLineItem(order);
+            System.Diagnostics.Debug.WriteLine(li.Id);
+
             return RedirectToAction("Create");
 
         }
@@ -68,7 +96,30 @@ namespace WebUI.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Microsoft.Extensions.Primitives.StringValues loc = new();
+                collection.TryGetValue("Location1", out loc);
+                HttpContext.Session.SetString("Location", loc);
+
+
+                List<Store> allStores = _bl.GetAllStores();
+                foreach (Store s in allStores)
+                {
+                    if (s.Location == loc)
+                    {
+                        HttpContext.Session.SetString("StoreID", s.Id.ToString());
+
+                    }
+                }
+
+                order.Store = new Store();
+                order.Customer = new Customer();
+                order.Store.Id = int.Parse(HttpContext.Session.GetString("StoreID"));
+                order.Customer.Id = int.Parse(HttpContext.Session.GetString("CustomerID"));
+                order = _bl.AddOrder(order);
+                System.Diagnostics.Debug.WriteLine(order.Id);
+
+
+                return RedirectToAction("create");
             }
             catch
             {

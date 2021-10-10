@@ -167,7 +167,7 @@ namespace DL.Migrations
             modelBuilder.Entity("Models.LineItem", b =>
                 {
                     b.HasOne("Models.Order", null)
-                        .WithOne("LineItem")
+                        .WithMany("LineItem")
                         .HasForeignKey("Models.LineItem", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
