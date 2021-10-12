@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "SelectStore";
+}
+
+<h1>Select Store</h1>
+<a asp-action="Index">Back</a>
+
+<form name="Location" asp-action="Inventory" asp-controller="admin" class="pt-5">
+
+    <div class="form-group row d-flex justify-content-center text-center">
+        <h4>Which store would you like to view?</h4>
+    </div>
+    <div class="form-group row d-flex justify-content-center text-center">
+        <select name="Location" class="form-select form-select-lg">
+            <option value="Bikini Bottom" selected>Bikini Bottom</option>
+            <option value="Tentacle Acres">Tentacle Acres</option>
+            <option value="New Kelp City">New Kelp City</option>
+        </select>
+    </div>
+    <div class="form-group row d-flex justify-content-center text-center">
+        <input type="submit" value="Select" class="btn btn-primary" />
+    </div>
+</form>

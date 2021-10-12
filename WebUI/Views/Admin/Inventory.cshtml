@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Models.Inventory>
+
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<h1>Inventory</h1>
+<a asp-action="Index">Back</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Location
+            </th>
+            <th>
+                Product
+            </th>
+            <th>
+                Amount
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Item)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    <form class="form-outline form-row" asp-action="UpdateInventory" asp-controller="admin">
+                        <div class="col-3">
+                            <input name="Replenish" type="number" id="typeNumber" class="form-control" />
+                            <input name="ProductID" type="hidden" value="@item.ProductId" class="form-control" />
+                            <input name="StoreID" type="hidden" value="@item.StoreId" class="form-control" />
+
+                        </div>
+                        <div class="col">
+                            <input class="btn btn-outline-secondary btn-sm" type="submit" value="Order" />
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

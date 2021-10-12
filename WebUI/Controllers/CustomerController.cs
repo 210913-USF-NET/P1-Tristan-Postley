@@ -49,7 +49,7 @@ namespace WebUI.Controllers
                     HttpContext.Session.SetString("Customer", customer.Name);
 
 
-                    return RedirectToAction("create", "order");
+                    return RedirectToAction("Location", "order");
                 }
                 return View();
             }

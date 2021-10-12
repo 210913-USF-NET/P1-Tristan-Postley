@@ -53,7 +53,9 @@ namespace DL
                     {
                         Item = p.Item
                     },
-                    Amount = (int)i.Amount
+                    Amount = (int)i.Amount,
+                    StoreId = s.Id,
+                    ProductId = p.Id
                 };
             
             return query.ToList();

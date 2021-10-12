@@ -38,10 +38,15 @@ namespace WebUI.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Location()
+        {
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Location()
+        public ActionResult Location(int id)
         {
             //Goto Admin Menu
             if(Request.Form["name"] == "Krabs" && Request.Form["password"] == "money")
@@ -69,8 +74,8 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddLineItem()
         {
-            System.Diagnostics.Debug.WriteLine("Add LineItem");
-            System.Diagnostics.Debug.WriteLine(order.Id);
+            System.Diagnostics.Debug.WriteLine("Store ID");
+            System.Diagnostics.Debug.WriteLine(order.StoreId);
 
             order.LineItem = new LineItem();
             order.LineItem.Quantity = int.Parse(Request.Form["Quantity"]);
@@ -80,10 +85,14 @@ namespace WebUI.Controllers
                 if (p.Item == Request.Form["Product"])
                 {
                     order.LineItem.Item = p;
+                    order.LineItem.ProductId = p.Id;
                 }
             }
             LineItem li = _bl.AddLineItem(order);
             System.Diagnostics.Debug.WriteLine(li.Id);
+
+            order.LineItem.Quantity *= -1;
+            _bl.UpdateInventory(order);
 
             return RedirectToAction("Create");
 

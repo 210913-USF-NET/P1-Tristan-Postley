@@ -44,7 +44,33 @@ namespace WebUI.Controllers
 
             return View(storeOrders);
         }
+        public ActionResult Inventory()
+        {
+            IEnumerable<Inventory> inv = _bl.GetAllInventories().Where(i => i.Store.Location == Request.Form["Location"]);
 
+            return View(inv);
+        }
+        public ActionResult UpdateInventory()
+        {
+
+            Order tempOrder = new Order()
+            {
+                StoreId = int.Parse(Request.Form["StoreID"]),
+                LineItem = new LineItem()
+                {
+                    Quantity = int.Parse(Request.Form["Replenish"]),
+                    ProductId = int.Parse(Request.Form["ProductID"])
+                }
+            };
+
+            _bl.UpdateInventory(tempOrder);
+
+            return RedirectToAction("SelectStore");
+        }
+        public ActionResult SelectStore()
+        {
+            return View();
+        }
         // GET: AdminController/Details/5
         public ActionResult Details(int id)
         {
