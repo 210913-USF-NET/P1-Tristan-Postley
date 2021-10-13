@@ -1,0 +1,117 @@
+2021-10-12 18:58:04.594 -07:00 [INF] Starting Web Host
+2021-10-12 18:58:07.222 -07:00 [INF] User profile is available. Using 'C:\Users\tpost\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-10-12 18:58:07.551 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-10-12 18:58:07.552 -07:00 [INF] Hosting environment: Development
+2021-10-12 18:58:07.552 -07:00 [INF] Content root path: D:\Revature\P1-Tristan-Postley\WebUI
+2021-10-12 18:58:07.610 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44366/ - -
+2021-10-12 18:58:07.657 -07:00 [INF] Executing endpoint 'WebUI.Controllers.HomeController.Index (WebUI)'
+2021-10-12 18:58:07.698 -07:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller WebUI.Controllers.HomeController (WebUI).
+2021-10-12 18:58:07.737 -07:00 [INF] Executing ViewResult, running view Index.
+2021-10-12 18:58:07.923 -07:00 [INF] Executed ViewResult - view Index executed in 194.9192ms.
+2021-10-12 18:58:07.924 -07:00 [INF] Executed action WebUI.Controllers.HomeController.Index (WebUI) in 212.3429ms
+2021-10-12 18:58:07.925 -07:00 [INF] Executed endpoint 'WebUI.Controllers.HomeController.Index (WebUI)'
+2021-10-12 18:58:07.937 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44366/ - - - 200 - text/html;+charset=utf-8 329.3068ms
+2021-10-12 19:00:22.016 -07:00 [INF] Starting Web Host
+2021-10-12 19:00:23.049 -07:00 [INF] User profile is available. Using 'C:\Users\tpost\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-10-12 19:00:23.241 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-10-12 19:00:23.242 -07:00 [INF] Hosting environment: Development
+2021-10-12 19:00:23.242 -07:00 [INF] Content root path: D:\Revature\P1-Tristan-Postley\WebUI
+2021-10-12 19:00:23.276 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44366/ - -
+2021-10-12 19:00:23.312 -07:00 [INF] Executing endpoint 'WebUI.Controllers.HomeController.Index (WebUI)'
+2021-10-12 19:00:23.346 -07:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller WebUI.Controllers.HomeController (WebUI).
+2021-10-12 19:00:23.361 -07:00 [INF] Executing ViewResult, running view Index.
+2021-10-12 19:00:23.474 -07:00 [INF] Executed ViewResult - view Index executed in 116.017ms.
+2021-10-12 19:00:23.476 -07:00 [INF] Executed action WebUI.Controllers.HomeController.Index (WebUI) in 129.2262ms
+2021-10-12 19:00:23.476 -07:00 [INF] Executed endpoint 'WebUI.Controllers.HomeController.Index (WebUI)'
+2021-10-12 19:00:23.486 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44366/ - - - 200 - text/html;+charset=utf-8 212.0496ms
+2021-10-12 19:00:32.188 -07:00 [INF] Request starting HTTP/2 POST https://localhost:44366/order/Location application/x-www-form-urlencoded 208
+2021-10-12 19:00:32.191 -07:00 [INF] Executing endpoint 'WebUI.Controllers.OrderController.Location (WebUI)'
+2021-10-12 19:00:32.203 -07:00 [INF] Route matched with {action = "Location", controller = "Order"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Location(Int32) on controller WebUI.Controllers.OrderController (WebUI).
+2021-10-12 19:00:32.952 -07:00 [INF] Executing RedirectResult, redirecting to /Admin.
+2021-10-12 19:00:32.952 -07:00 [INF] Executed action WebUI.Controllers.OrderController.Location (WebUI) in 749.6628ms
+2021-10-12 19:00:32.952 -07:00 [INF] Executed endpoint 'WebUI.Controllers.OrderController.Location (WebUI)'
+2021-10-12 19:00:32.954 -07:00 [INF] Request finished HTTP/2 POST https://localhost:44366/order/Location application/x-www-form-urlencoded 208 - 302 - - 766.3552ms
+2021-10-12 19:00:32.956 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44366/Admin - -
+2021-10-12 19:00:32.957 -07:00 [INF] Executing endpoint 'WebUI.Controllers.AdminController.Index (WebUI)'
+2021-10-12 19:00:32.958 -07:00 [INF] Route matched with {action = "Index", controller = "Admin"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller WebUI.Controllers.AdminController (WebUI).
+2021-10-12 19:00:32.959 -07:00 [INF] Executing ViewResult, running view Index.
+2021-10-12 19:00:32.965 -07:00 [INF] Executed ViewResult - view Index executed in 6.9135ms.
+2021-10-12 19:00:32.965 -07:00 [INF] Executed action WebUI.Controllers.AdminController.Index (WebUI) in 7.4972ms
+2021-10-12 19:00:32.965 -07:00 [INF] Executed endpoint 'WebUI.Controllers.AdminController.Index (WebUI)'
+2021-10-12 19:00:32.966 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44366/Admin - - - 200 - text/html;+charset=utf-8 9.6689ms
+2021-10-12 19:00:35.997 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44366/Admin/SelectStore - -
+2021-10-12 19:00:35.998 -07:00 [INF] Executing endpoint 'WebUI.Controllers.AdminController.SelectStore (WebUI)'
+2021-10-12 19:00:36.000 -07:00 [INF] Route matched with {action = "SelectStore", controller = "Admin"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult SelectStore() on controller WebUI.Controllers.AdminController (WebUI).
+2021-10-12 19:00:36.004 -07:00 [INF] Executing ViewResult, running view SelectStore.
+2021-10-12 19:00:36.023 -07:00 [INF] Executed ViewResult - view SelectStore executed in 19.937ms.
+2021-10-12 19:00:36.023 -07:00 [INF] Executed action WebUI.Controllers.AdminController.SelectStore (WebUI) in 23.1457ms
+2021-10-12 19:00:36.023 -07:00 [INF] Executed endpoint 'WebUI.Controllers.AdminController.SelectStore (WebUI)'
+2021-10-12 19:00:36.024 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44366/Admin/SelectStore - - - 200 - text/html;+charset=utf-8 27.3231ms
+2021-10-12 19:00:36.433 -07:00 [INF] Request starting HTTP/2 POST https://localhost:44366/admin/Inventory application/x-www-form-urlencoded 205
+2021-10-12 19:00:36.434 -07:00 [INF] Executing endpoint 'WebUI.Controllers.AdminController.Inventory (WebUI)'
+2021-10-12 19:00:36.436 -07:00 [INF] Route matched with {action = "Inventory", controller = "Admin"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Inventory() on controller WebUI.Controllers.AdminController (WebUI).
+2021-10-12 19:00:37.261 -07:00 [INF] Entity Framework Core 5.0.10 initialized 'KKDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-10-12 19:00:38.140 -07:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", s."Location", p."Item", i."Amount", s."Id" AS "StoreId", p."Id" AS "ProductId"
+FROM "Inventories" AS i
+INNER JOIN "Stores" AS s ON i."StoreId" = s."Id"
+INNER JOIN "Products" AS p ON i."ProductId" = p."Id"
+2021-10-12 19:00:38.156 -07:00 [INF] Executing ViewResult, running view Inventory.
+2021-10-12 19:00:38.175 -07:00 [INF] Executed ViewResult - view Inventory executed in 19.5148ms.
+2021-10-12 19:00:38.175 -07:00 [INF] Executed action WebUI.Controllers.AdminController.Inventory (WebUI) in 1739.5885ms
+2021-10-12 19:00:38.175 -07:00 [INF] Executed endpoint 'WebUI.Controllers.AdminController.Inventory (WebUI)'
+2021-10-12 19:00:38.179 -07:00 [INF] Request finished HTTP/2 POST https://localhost:44366/admin/Inventory application/x-www-form-urlencoded 205 - 200 - text/html;+charset=utf-8 1746.2248ms
+2021-10-12 19:00:43.938 -07:00 [INF] Request starting HTTP/2 POST https://localhost:44366/admin/UpdateInventory application/x-www-form-urlencoded 216
+2021-10-12 19:00:43.939 -07:00 [INF] Executing endpoint 'WebUI.Controllers.AdminController.UpdateInventory (WebUI)'
+2021-10-12 19:00:43.940 -07:00 [INF] Route matched with {action = "UpdateInventory", controller = "Admin"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult UpdateInventory() on controller WebUI.Controllers.AdminController (WebUI).
+2021-10-12 19:00:43.971 -07:00 [INF] Entity Framework Core 5.0.10 initialized 'KKDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-10-12 19:00:44.029 -07:00 [INF] Executed DbCommand (18ms) [Parameters=[@__order_StoreId_0='?' (DbType = Int32), @__order_LineItem_ProductId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Amount", i."ProductId", i."StoreId"
+FROM "Inventories" AS i
+WHERE (i."StoreId" = @__order_StoreId_0) AND (i."ProductId" = @__order_LineItem_ProductId_1)
+LIMIT 1
+2021-10-12 19:00:44.137 -07:00 [INF] Executed DbCommand (15ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Inventories" SET "Amount" = @p0
+WHERE "Id" = @p1;
+2021-10-12 19:00:44.212 -07:00 [INF] Executing RedirectResult, redirecting to /Admin/SelectStore.
+2021-10-12 19:00:44.213 -07:00 [INF] Executed action WebUI.Controllers.AdminController.UpdateInventory (WebUI) in 272.2992ms
+2021-10-12 19:00:44.213 -07:00 [INF] Executed endpoint 'WebUI.Controllers.AdminController.UpdateInventory (WebUI)'
+2021-10-12 19:00:44.223 -07:00 [INF] Request finished HTTP/2 POST https://localhost:44366/admin/UpdateInventory application/x-www-form-urlencoded 216 - 302 - - 284.6170ms
+2021-10-12 19:00:44.224 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44366/Admin/SelectStore - -
+2021-10-12 19:00:44.224 -07:00 [INF] Executing endpoint 'WebUI.Controllers.AdminController.SelectStore (WebUI)'
+2021-10-12 19:00:44.224 -07:00 [INF] Route matched with {action = "SelectStore", controller = "Admin"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult SelectStore() on controller WebUI.Controllers.AdminController (WebUI).
+2021-10-12 19:00:44.224 -07:00 [INF] Executing ViewResult, running view SelectStore.
+2021-10-12 19:00:44.225 -07:00 [INF] Executed ViewResult - view SelectStore executed in 1.0712ms.
+2021-10-12 19:00:44.225 -07:00 [INF] Executed action WebUI.Controllers.AdminController.SelectStore (WebUI) in 1.3292ms
+2021-10-12 19:00:44.225 -07:00 [INF] Executed endpoint 'WebUI.Controllers.AdminController.SelectStore (WebUI)'
+2021-10-12 19:00:44.226 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44366/Admin/SelectStore - - - 200 - text/html;+charset=utf-8 2.2272ms
+2021-10-12 19:00:46.008 -07:00 [INF] Request starting HTTP/2 POST https://localhost:44366/admin/Inventory application/x-www-form-urlencoded 205
+2021-10-12 19:00:46.008 -07:00 [INF] Executing endpoint 'WebUI.Controllers.AdminController.Inventory (WebUI)'
+2021-10-12 19:00:46.008 -07:00 [INF] Route matched with {action = "Inventory", controller = "Admin"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Inventory() on controller WebUI.Controllers.AdminController (WebUI).
+2021-10-12 19:00:46.019 -07:00 [INF] Entity Framework Core 5.0.10 initialized 'KKDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-10-12 19:00:46.039 -07:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", s."Location", p."Item", i."Amount", s."Id" AS "StoreId", p."Id" AS "ProductId"
+FROM "Inventories" AS i
+INNER JOIN "Stores" AS s ON i."StoreId" = s."Id"
+INNER JOIN "Products" AS p ON i."ProductId" = p."Id"
+2021-10-12 19:00:46.040 -07:00 [INF] Executing ViewResult, running view Inventory.
+2021-10-12 19:00:46.046 -07:00 [INF] Executed ViewResult - view Inventory executed in 6.1903ms.
+2021-10-12 19:00:46.046 -07:00 [INF] Executed action WebUI.Controllers.AdminController.Inventory (WebUI) in 37.8567ms
+2021-10-12 19:00:46.046 -07:00 [INF] Executed endpoint 'WebUI.Controllers.AdminController.Inventory (WebUI)'
+2021-10-12 19:00:46.047 -07:00 [INF] Request finished HTTP/2 POST https://localhost:44366/admin/Inventory application/x-www-form-urlencoded 205 - 200 - text/html;+charset=utf-8 39.1678ms
+2021-10-12 19:00:49.285 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44366/Admin - -
+2021-10-12 19:00:49.285 -07:00 [INF] Executing endpoint 'WebUI.Controllers.AdminController.Index (WebUI)'
+2021-10-12 19:00:49.285 -07:00 [INF] Route matched with {action = "Index", controller = "Admin"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller WebUI.Controllers.AdminController (WebUI).
+2021-10-12 19:00:49.286 -07:00 [INF] Executing ViewResult, running view Index.
+2021-10-12 19:00:49.287 -07:00 [INF] Executed ViewResult - view Index executed in 1.4266ms.
+2021-10-12 19:00:49.287 -07:00 [INF] Executed action WebUI.Controllers.AdminController.Index (WebUI) in 1.7154ms
+2021-10-12 19:00:49.287 -07:00 [INF] Executed endpoint 'WebUI.Controllers.AdminController.Index (WebUI)'
+2021-10-12 19:00:49.288 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44366/Admin - - - 200 - text/html;+charset=utf-8 2.6031ms
+2021-10-12 19:00:50.945 -07:00 [INF] Request starting HTTP/2 GET https://localhost:44366/ - -
+2021-10-12 19:00:50.945 -07:00 [INF] Executing endpoint 'WebUI.Controllers.HomeController.Index (WebUI)'
+2021-10-12 19:00:50.945 -07:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller WebUI.Controllers.HomeController (WebUI).
+2021-10-12 19:00:50.945 -07:00 [INF] Executing ViewResult, running view Index.
+2021-10-12 19:00:50.946 -07:00 [INF] Executed ViewResult - view Index executed in 1.1276ms.
+2021-10-12 19:00:50.946 -07:00 [INF] Executed action WebUI.Controllers.HomeController.Index (WebUI) in 1.3673ms
+2021-10-12 19:00:50.947 -07:00 [INF] Executed endpoint 'WebUI.Controllers.HomeController.Index (WebUI)'
+2021-10-12 19:00:50.947 -07:00 [INF] Request finished HTTP/2 GET https://localhost:44366/ - - - 200 - text/html;+charset=utf-8 2.1814ms

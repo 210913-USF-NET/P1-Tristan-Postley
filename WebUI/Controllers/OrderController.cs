@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StoreBL;
 using Models;
+using Serilog;
 
 namespace WebUI.Controllers
 {
@@ -52,6 +53,7 @@ namespace WebUI.Controllers
             if(Request.Form["name"] == "Krabs" && Request.Form["password"] == "money")
             {
                 return RedirectToAction("Index", "Admin");
+                Log.Information("Admin logged in");
             }
             List<Customer> allCustomers = _bl.GetAllCustomers();
             bool match = false;
